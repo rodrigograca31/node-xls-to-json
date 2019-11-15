@@ -29,7 +29,7 @@
     "url": "http://lijung.com/"
   },
   "bugs": {
-    "url": "https://github.com/DataGarage/node-xls-json/issues"
+    "url": "https://github.com/rodrigograca31/node-xls-json/issues"
   },
   "bundleDependencies": false,
   "dependencies": {
@@ -42,7 +42,7 @@
     "mocha": "~5.0.5",
     "should": "~13.2.1"
   },
-  "homepage": "https://github.com/DataGarage/node-xls-json",
+  "homepage": "https://github.com/rodrigograca31/node-xls-json",
   "keywords": [
     "xls",
     "json"
@@ -52,7 +52,7 @@
   "name": "xls-to-json",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DataGarage/node-xls-json.git"
+    "url": "git+https://github.com/rodrigograca31/node-xls-json.git"
   },
   "scripts": {
     "test": "mocha"
