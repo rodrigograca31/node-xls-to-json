@@ -8,7 +8,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/rodrigograca31/node-xls-json.git"
+		"url": "git+https://github.com/rodrigograca31/node-xls-to-json.git"
 	},
 	"keywords": [
 		"xls",
@@ -21,7 +21,7 @@
 	},
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/rodrigograca31/node-xls-json/issues"
+		"url": "https://github.com/rodrigograca31/node-xls-to-json/issues"
 	},
-	"homepage": "https://github.com/rodrigograca31/node-xls-json#readme"
+	"homepage": "https://github.com/rodrigograca31/node-xls-to-json#readme"
 }
