@@ -1,61 +1,27 @@
 {
-  "_from": "xls-to-json",
-  "_id": "xls-to-json@0.5.2",
-  "_inBundle": false,
-  "_integrity": "sha512-Dk0mn5s4PT+CUJ7R0day8X3OXDnRELGWtVvNtz00xpjTNRm5PwrDM0Hb/ZhLXzsFiFaJY3Uj8GNKOejf29+BLA==",
-  "_location": "/xls-to-json",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "tag",
-    "registry": true,
-    "raw": "xls-to-json",
-    "name": "xls-to-json",
-    "escapedName": "xls-to-json",
-    "rawSpec": "",
-    "saveSpec": null,
-    "fetchSpec": "latest"
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/xls-to-json/-/xls-to-json-0.5.2.tgz",
-  "_shasum": "6d39fc66210b302f588a2bf7b2a770e131666ccf",
-  "_spec": "xls-to-json",
-  "_where": "/home/unknown/git/temp_delete",
-  "author": {
-    "name": "chilijung",
-    "email": "chilijung@gmail.com",
-    "url": "http://lijung.com/"
-  },
-  "bugs": {
-    "url": "https://github.com/rodrigograca31/node-xls-json/issues"
-  },
-  "bundleDependencies": false,
-  "dependencies": {
-    "csv": "~0.3.7",
-    "xlsx": "0.12.8"
-  },
-  "deprecated": false,
-  "description": "Converting xls file to json files using nodejs",
-  "devDependencies": {
-    "mocha": "~5.0.5",
-    "should": "~13.2.1"
-  },
-  "homepage": "https://github.com/rodrigograca31/node-xls-json",
-  "keywords": [
-    "xls",
-    "json"
-  ],
-  "license": "MIT",
-  "main": "index.js",
-  "name": "xls-to-json",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rodrigograca31/node-xls-json.git"
-  },
-  "scripts": {
-    "test": "mocha"
-  },
-  "version": "0.5.2"
+	"name": "xls-to-json",
+	"version": "0.5.3",
+	"description": "Converting xls file to json files using nodejs",
+	"main": "index.js",
+	"scripts": {
+		"test": "mocha"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/rodrigograca31/node-xls-json.git"
+	},
+	"keywords": [
+		"xls",
+		"json",
+		"node"
+	],
+	"author": {
+		"name": "Rodrigo Graça",
+		"url": "https://rodrigograca.com"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/rodrigograca31/node-xls-json/issues"
+	},
+	"homepage": "https://github.com/rodrigograca31/node-xls-json#readme"
 }
