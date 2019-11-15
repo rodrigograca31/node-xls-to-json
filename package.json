@@ -1,6 +1,6 @@
 {
 	"name": "xls-to-json",
-	"version": "0.5.3",
+	"version": "0.5.4",
 	"description": "Converting xls file to json files using nodejs",
 	"main": "index.js",
 	"scripts": {
@@ -23,5 +23,13 @@
 	"bugs": {
 		"url": "https://github.com/rodrigograca31/node-xls-to-json/issues"
 	},
-	"homepage": "https://github.com/rodrigograca31/node-xls-to-json#readme"
+	"homepage": "https://github.com/rodrigograca31/node-xls-to-json#readme",
+	"dependencies": {
+		"csv": "~0.3.7",
+		"xlsx": "0.12.8"
+	},
+	"devDependencies": {
+		"mocha": "~5.0.5",
+		"should": "~13.2.1"
+	}
 }
