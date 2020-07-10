@@ -25,7 +25,7 @@
 	},
 	"homepage": "https://github.com/rodrigograca31/node-xls-to-json#readme",
 	"dependencies": {
-		"csv": "~0.3.7",
+		"csv": "^5.3.2",
 		"xlsx": "^0.15.2"
 	},
 	"devDependencies": {

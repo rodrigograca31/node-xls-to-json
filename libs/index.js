@@ -1,10 +1,8 @@
-var fs = require("fs");
-var xlsx = require("xlsx");
-var cvcsv = require("csv");
+const fs = require("fs");
+const xlsx = require("xlsx");
+const csv = require("csv");
 
-exports = module.exports = XLS_json;
-
-// exports.XLS_json = XLS_json;
+module.exports = XLS_json;
 
 function XLS_json(config, callback) {
 	if (!config.input) {
@@ -13,14 +11,12 @@ function XLS_json(config, callback) {
 			null
 		);
 	}
-
-	var cv = new CV(config, callback);
 }
 
 function CV(config, callback) {
-	var wb = this.load_xls(config.input);
-	var ws = this.ws(wb, config.sheet);
-	var csv = this.csv(ws);
+	const wb = this.load_xls(config.input);
+	const ws = this.ws(wb, config.sheet);
+	const csv = this.csv(ws);
 	this.cvjson(csv, config.output, callback, config.rowsToSkip || 0);
 }
 
@@ -41,12 +37,15 @@ CV.prototype.cvjson = function (csv, output, callback, rowsToSkip) {
 	var record = [];
 	var header = [];
 
-	cvcsv()
-		.from.string(csv)
-		.transform(function (row) {
-			row.unshift(row.pop());
-			return row;
-		})
+	csv
+		.transform(
+			csv.parse(csv),
+
+			function (row) {
+				row.unshift(row.pop());
+				return row;
+			}
+		)
 		.on("record", function (row, index) {
 			if (index === rowsToSkip) {
 				header = row;
@@ -73,3 +72,6 @@ CV.prototype.cvjson = function (csv, output, callback, rowsToSkip) {
 			callback(error, null);
 		});
 };
+
+// TODO: Convert it into a Class
+// TODO: Convert to TypeScript
