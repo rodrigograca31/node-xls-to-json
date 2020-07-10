@@ -6,8 +6,8 @@ Converting xls file to json files using nodejs
 
 ## Install
 
-```
-  npm install xls-to-json
+```bash
+npm install xls-to-json
 ```
 
 ## Usage
