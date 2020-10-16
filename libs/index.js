@@ -16,7 +16,13 @@ function CV(config, callback) {
 	const wb = this.load_xls(config.input);
 	const ws = this.ws(wb, config.sheet);
 	const csv = this.csv(ws);
-	this.CSVToJSON(csv, config.output, callback, config.rowsToSkip || 0);
+	this.CSVToJSON(
+		csv,
+		config.output,
+		callback,
+		config.rowsToSkip || 0,
+		config.allowEmptyKey
+	);
 }
 
 CV.prototype.load_xls = function (input) {
@@ -32,7 +38,13 @@ CV.prototype.csv = function (ws) {
 	return (csv_file = xlsx.utils.make_csv(ws));
 };
 
-CV.prototype.CSVToJSON = function (csv, output, callback, rowsToSkip) {
+CV.prototype.CSVToJSON = function (
+	csv,
+	output,
+	callback,
+	rowsToSkip,
+	allowEmptyKey = true
+) {
 	let records = [];
 	let header = [];
 	const parser = parse(csv);
@@ -48,6 +60,9 @@ CV.prototype.CSVToJSON = function (csv, output, callback, rowsToSkip) {
 				} else if (index > rowsToSkip) {
 					var obj = {};
 					header.forEach(function (column, index) {
+						if (!allowEmptyKey && !column.trim()) {
+							return;
+						}
 						obj[column.trim()] = record[index].trim();
 					});
 					records.push(obj);
@@ -73,6 +88,5 @@ CV.prototype.CSVToJSON = function (csv, output, callback, rowsToSkip) {
 
 // TODO: Convert it into a Class
 // TODO: Convert to TypeScript
-// TODO: filter columns with no header: ""
 
 module.exports = XLS_json;

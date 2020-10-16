@@ -20,6 +20,7 @@ node_xj(
 		output: "output.json", // output json
 		sheet: "sheetname", // specific sheetname
 		rowsToSkip: 5, // number of rows to skip at the top of the sheet; defaults to 0
+		allowEmptyKey: false, // avoids empty keys in the output, example: {"": "something"}; default: true
 	},
 	function (err, result) {
 		if (err) {

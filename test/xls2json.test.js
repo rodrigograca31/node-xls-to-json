@@ -121,6 +121,22 @@ describe("xls to json", function () {
 			}
 		);
 	});
+
+	it("should filter empty key/header", function (done) {
+		xls2json(
+			{
+				input: "./sample/no_header.xlsx",
+				allowEmptyKey: false,
+			},
+			function (err, result) {
+				if (err) throw err;
+
+				// makes sure it still looks like the example JSON even though its using a different file with extra information but no header/key for that information
+				assert.deepStrictEqual(result, correctJSON);
+				done();
+			}
+		);
+	});
 	describe("supports multiple file formats", function () {
 		it("supports .ods", function (done) {
 			xls2json(
@@ -165,3 +181,5 @@ describe("xls to json", function () {
 		});
 	});
 });
+
+// TODO: test sheet config
