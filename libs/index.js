@@ -1,6 +1,6 @@
 const fs = require("fs");
 const xlsx = require("xlsx");
-const csv = require("csv");
+const parse = require("csv-parse");
 
 module.exports = XLS_json;
 
@@ -11,13 +11,14 @@ function XLS_json(config, callback) {
 			null
 		);
 	}
+	const cv = new CV(config, callback);
 }
 
 function CV(config, callback) {
 	const wb = this.load_xls(config.input);
 	const ws = this.ws(wb, config.sheet);
 	const csv = this.csv(ws);
-	this.cvjson(csv, config.output, callback, config.rowsToSkip || 0);
+	this.cvsjson(csv, config.output, callback, config.rowsToSkip || 0);
 }
 
 CV.prototype.load_xls = function (input) {
@@ -33,28 +34,27 @@ CV.prototype.csv = function (ws) {
 	return (csv_file = xlsx.utils.make_csv(ws));
 };
 
-CV.prototype.cvjson = function (csv, output, callback, rowsToSkip) {
-	var record = [];
-	var header = [];
+CV.prototype.cvsjson = function (csv, output, callback, rowsToSkip) {
+	let records = [];
+	let header = [];
+	const parser = parse(csv);
 
-	csv
-		.transform(
-			csv.parse(csv),
+	parser
+		.on("readable", function () {
+			let record = [];
+			let index = 0;
 
-			function (row) {
-				row.unshift(row.pop());
-				return row;
-			}
-		)
-		.on("record", function (row, index) {
-			if (index === rowsToSkip) {
-				header = row;
-			} else if (index > rowsToSkip) {
-				var obj = {};
-				header.forEach(function (column, index) {
-					obj[column.trim()] = row[index].trim();
-				});
-				record.push(obj);
+			while ((record = parser.read())) {
+				if (index === rowsToSkip) {
+					header = record;
+				} else if (index > rowsToSkip) {
+					var obj = {};
+					header.forEach(function (column, index) {
+						obj[column.trim()] = record[index].trim();
+					});
+					records.push(obj);
+				}
+				index++;
 			}
 		})
 		.on("end", function (count) {
@@ -62,10 +62,10 @@ CV.prototype.cvjson = function (csv, output, callback, rowsToSkip) {
 			// the 'end' event may fire before the file has been written
 			if (output !== null) {
 				var stream = fs.createWriteStream(output, { flags: "w" });
-				stream.write(JSON.stringify(record));
-				callback(null, record);
+				stream.write(JSON.stringify(records));
+				callback(null, records);
 			} else {
-				callback(null, record);
+				callback(null, records);
 			}
 		})
 		.on("error", function (error) {
@@ -75,3 +75,4 @@ CV.prototype.cvjson = function (csv, output, callback, rowsToSkip) {
 
 // TODO: Convert it into a Class
 // TODO: Convert to TypeScript
+// TODO: filter columns with no header: ""
