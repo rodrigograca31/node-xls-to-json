@@ -1,6 +1,7 @@
-var should = require("should");
-var xls2json = require("../");
-var fs = require("fs");
+const should = require("should");
+const xls2json = require("../");
+const fs = require("fs");
+const assert = require("assert");
 
 describe("xls to json", function () {
 	it("should convert xls to json", function () {
@@ -30,8 +31,8 @@ describe("xls to json", function () {
 	});
 
 	it("should read file in test.json", function () {
-		var exist = fs.existsSync("./sample/test.json");
-		exist.should.be.true;
+		const exist = fs.existsSync("./sample/test.json");
+		exist.should.be.true();
 	});
 
 	it("should trim", function () {
@@ -45,8 +46,8 @@ describe("xls to json", function () {
 				result.should.be.an.instanceOf(Object);
 
 				//test any space
-				var re = /\s/;
-				re.test(result[0].name).should.be.false;
+				const re = /\s/;
+				re.test(result[0].name).should.be.false();
 			}
 		);
 	});
@@ -64,6 +65,15 @@ describe("xls to json", function () {
 
 				// test headers
 				should.exist(result[0]);
+
+				should.equal(result[0].id, "1");
+
+				assert.deepStrictEqual(result[0], {
+					id: "1",
+					first_name: "Christian",
+					last_name: "Lude",
+					email: "clude0@example.com",
+				});
 			}
 		);
 	});
