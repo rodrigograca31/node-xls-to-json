@@ -2,8 +2,6 @@ const fs = require("fs");
 const xlsx = require("xlsx");
 const parse = require("csv-parse");
 
-module.exports = XLS_json;
-
 function XLS_json(config, callback) {
 	if (!config.input) {
 		callback(
@@ -11,14 +9,14 @@ function XLS_json(config, callback) {
 			null
 		);
 	}
-	const cv = new CV(config, callback);
+	new CV(config, callback);
 }
 
 function CV(config, callback) {
 	const wb = this.load_xls(config.input);
 	const ws = this.ws(wb, config.sheet);
 	const csv = this.csv(ws);
-	this.cvsjson(csv, config.output, callback, config.rowsToSkip || 0);
+	this.CSVToJSON(csv, config.output, callback, config.rowsToSkip || 0);
 }
 
 CV.prototype.load_xls = function (input) {
@@ -34,7 +32,7 @@ CV.prototype.csv = function (ws) {
 	return (csv_file = xlsx.utils.make_csv(ws));
 };
 
-CV.prototype.cvsjson = function (csv, output, callback, rowsToSkip) {
+CV.prototype.CSVToJSON = function (csv, output, callback, rowsToSkip) {
 	let records = [];
 	let header = [];
 	const parser = parse(csv);
@@ -76,3 +74,5 @@ CV.prototype.cvsjson = function (csv, output, callback, rowsToSkip) {
 // TODO: Convert it into a Class
 // TODO: Convert to TypeScript
 // TODO: filter columns with no header: ""
+
+module.exports = XLS_json;
