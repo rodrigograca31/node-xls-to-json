@@ -1,4 +1,3 @@
-const should = require("should");
 const xls2json = require("../");
 const fs = require("fs");
 const assert = require("assert");
@@ -11,8 +10,9 @@ describe("xls to json", function () {
 				output: null,
 			},
 			function (err, result) {
-				should.not.exist(err);
-				result.should.be.an.instanceOf(Object);
+				assert.strictEqual(err, null);
+				assert.notStrictEqual(result, null);
+				assert.strictEqual(typeof result, typeof {});
 				done();
 			}
 		);
@@ -25,8 +25,9 @@ describe("xls to json", function () {
 				output: "./sample/test.json",
 			},
 			function (err, result) {
-				should.not.exist(err);
-				result.should.be.an.instanceOf(Object);
+				assert.strictEqual(err, null);
+				assert.notStrictEqual(result, null);
+				assert.strictEqual(typeof result, typeof {});
 				done();
 			}
 		);
@@ -34,7 +35,7 @@ describe("xls to json", function () {
 
 	it("should read file in test.json", function () {
 		const exist = fs.existsSync("./sample/test.json");
-		exist.should.be.true();
+		assert.strictEqual(exist, true);
 	});
 
 	it("should trim", function (done) {
@@ -44,12 +45,13 @@ describe("xls to json", function () {
 				output: "./sample/test.json",
 			},
 			function (err, result) {
-				should.not.exist(err);
-				result.should.be.an.instanceOf(Object);
+				assert.strictEqual(err, null);
+				assert.notStrictEqual(result, null);
+				assert.strictEqual(typeof result, typeof {});
 
 				//test any space
 				const re = /\s/;
-				re.test(result[0].name).should.be.false();
+				assert.strictEqual(re.test(result[0].name), false);
 				done();
 			}
 		);
@@ -63,14 +65,14 @@ describe("xls to json", function () {
 				rowsToSkip: 4,
 			},
 			function (err, result) {
-				should.not.exist(err);
-				result.should.be.an.instanceOf(Object);
+				assert.strictEqual(err, null);
+				assert.notStrictEqual(result, null);
+				assert.strictEqual(typeof result, typeof {});
 
 				// test headers
-				should.exist(result[0]);
-
-				should.equal(result[0].id, "1");
-
+				assert.notStrictEqual(result[0], null);
+				assert.notStrictEqual(result[0], undefined);
+				assert.strictEqual(result[0].id, "1");
 				assert.deepStrictEqual(result[0], {
 					id: "1",
 					first_name: "Christian",
@@ -127,7 +129,7 @@ describe("xls to json", function () {
 					output: "./sample/formats/example.json",
 				},
 				function (err, result) {
-					should.not.exist(err);
+					assert.strictEqual(err, null);
 					assert.deepStrictEqual(result, correctJSON);
 					done();
 				}
@@ -141,7 +143,7 @@ describe("xls to json", function () {
 					output: "./sample/formats/example.json",
 				},
 				function (err, result) {
-					should.not.exist(err);
+					assert.strictEqual(err, null);
 					assert.deepStrictEqual(result, correctJSON);
 					done();
 				}
@@ -155,7 +157,7 @@ describe("xls to json", function () {
 					output: "./sample/formats/example.json",
 				},
 				function (err, result) {
-					should.not.exist(err);
+					assert.strictEqual(err, null);
 					assert.deepStrictEqual(result, correctJSON);
 					done();
 				}
