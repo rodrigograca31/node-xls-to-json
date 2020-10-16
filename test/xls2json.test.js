@@ -35,7 +35,7 @@ describe("xls to json", function () {
 
 	it("should read file in test.json", function () {
 		const exist = fs.existsSync("./sample/test.json");
-		assert.strictEqual(exist, true);
+		assert(exist);
 	});
 
 	it("should trim", function (done) {
@@ -51,7 +51,7 @@ describe("xls to json", function () {
 
 				//test any space
 				const re = /\s/;
-				assert.strictEqual(re.test(result[0].name), false);
+				assert(!re.test(result[0].name));
 				done();
 			}
 		);
