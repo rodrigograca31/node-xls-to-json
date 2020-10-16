@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#its written durin tests, this avoids it being tracked
+sample/formats/write.json
