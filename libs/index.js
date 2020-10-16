@@ -58,7 +58,7 @@ CV.prototype.CSVToJSON = function (csv, output, callback, rowsToSkip) {
 		.on("end", function (count) {
 			// when writing to a file, use the 'close' event
 			// the 'end' event may fire before the file has been written
-			if (output !== null) {
+			if (output) {
 				var stream = fs.createWriteStream(output, { flags: "w" });
 				stream.write(JSON.stringify(records));
 				callback(null, records);
