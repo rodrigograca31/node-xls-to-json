@@ -28,14 +28,17 @@ describe("xls to json", function () {
 				assert.strictEqual(err, null);
 				assert.notStrictEqual(result, null);
 				assert.strictEqual(typeof result, typeof {});
+				console.log("1");
 				done();
 			}
 		);
-	});
 
-	it("should read file in test.json", function () {
-		const exist = fs.existsSync("./sample/test.json");
-		assert(exist);
+		describe("check if test.json exists", function () {
+			it("test.json should exist", function () {
+				const exist = fs.existsSync("./sample/test.json");
+				assert(exist);
+			});
+		});
 	});
 
 	it("should trim", function (done) {
