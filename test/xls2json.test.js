@@ -28,16 +28,15 @@ describe("xls to json", function () {
 				assert.strictEqual(err, null);
 				assert.notStrictEqual(result, null);
 				assert.strictEqual(typeof result, typeof {});
-				console.log("1");
 				done();
 			}
 		);
+	});
 
-		describe("check if test.json exists", function () {
-			it("test.json should exist", function () {
-				const exist = fs.existsSync("./sample/test.json");
-				assert(exist);
-			});
+	describe("check if test.json exists", function () {
+		it("test.json should exist", function () {
+			const exist = fs.existsSync("./sample/test.json");
+			assert(exist);
 		});
 	});
 
@@ -45,7 +44,6 @@ describe("xls to json", function () {
 		xls2json(
 			{
 				input: "./sample/testtrim.xls",
-				output: "./sample/test.json",
 			},
 			function (err, result) {
 				assert.strictEqual(err, null);
@@ -64,7 +62,6 @@ describe("xls to json", function () {
 		xls2json(
 			{
 				input: "./sample/skiprows.xls",
-				output: "./sample/skiprows.json",
 				rowsToSkip: 4,
 			},
 			function (err, result) {
@@ -145,7 +142,7 @@ describe("xls to json", function () {
 			xls2json(
 				{
 					input: "./sample/formats/example.ods",
-					output: "./sample/formats/example.json",
+					// output: "./sample/formats/example.json",
 				},
 				function (err, result) {
 					assert.strictEqual(err, null);
@@ -159,7 +156,7 @@ describe("xls to json", function () {
 			xls2json(
 				{
 					input: "./sample/formats/example.xls",
-					output: "./sample/formats/example.json",
+					// output: "./sample/formats/example.json",
 				},
 				function (err, result) {
 					assert.strictEqual(err, null);
@@ -173,7 +170,7 @@ describe("xls to json", function () {
 			xls2json(
 				{
 					input: "./sample/formats/example.xlsx",
-					output: "./sample/formats/example.json",
+					// output: "./sample/formats/example.json",
 				},
 				function (err, result) {
 					assert.strictEqual(err, null);
