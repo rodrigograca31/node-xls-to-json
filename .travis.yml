@@ -5,3 +5,8 @@ node_js:
   - "12"
   - "14"
   - "node"
+
+os:
+  - linux
+  - osx
+  - windows
