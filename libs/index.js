@@ -88,5 +88,7 @@ CV.prototype.CSVToJSON = function (
 
 // TODO: Convert it into a Class
 // TODO: Convert to TypeScript
+// TODO: Filter columns option (avoid filtering inside each row in order to increase performance)
+// TODO: Parse integers option. e.g.: turn "id": "1" to "id": 1, code: Number.isInteger(parseInt("4"))
 
 module.exports = XLS_json;
