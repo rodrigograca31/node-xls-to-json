@@ -71,12 +71,23 @@ CV.prototype.CSVToJSON = function (
 			}
 		})
 		.on("end", function (count) {
-			// when writing to a file, use the 'close' event
-			// the 'end' event may fire before the file has been written
 			if (output) {
-				var stream = fs.createWriteStream(output, { flags: "w" });
-				stream.write(JSON.stringify(records));
-				callback(null, records);
+				// write asynchronously and call the callback after so that theres no racing conditions on the tests
+				fs.writeFile(
+					output,
+					JSON.stringify(records),
+					{
+						encoding: "utf8",
+						flag: "w",
+					},
+					(err) => {
+						if (err) {
+							callback(err, null);
+						} else {
+							callback(null, records);
+						}
+					}
+				);
 			} else {
 				callback(null, records);
 			}

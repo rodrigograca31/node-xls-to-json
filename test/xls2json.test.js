@@ -109,15 +109,15 @@ describe("xls to json", function () {
 				output: "./sample/formats/write.json",
 			},
 			function (err, result) {
-				fs.readFile("./sample/formats/write.json", "utf-8", function (
-					err,
-					data
-				) {
-					if (err) throw err;
-
-					assert.deepStrictEqual(JSON.parse(data), correctJSON);
-					done();
-				});
+				fs.readFile(
+					"./sample/formats/write.json",
+					"utf-8",
+					function (err, data) {
+						if (err) throw err;
+						assert.deepStrictEqual(JSON.parse(data), correctJSON);
+						done();
+					}
+				);
 			}
 		);
 	});
