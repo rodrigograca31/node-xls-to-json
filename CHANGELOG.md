@@ -1,5 +1,10 @@
 # Changelog
 
+### 2.1.1 (2022-06-01)
+
+- chore: 🤖 update dependencies
+- fix: 🐛 tests
+
 ### 2.1.0 (2020-10-16)
 
 - feat: ✨ allowEmptyKey option
