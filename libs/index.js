@@ -1,6 +1,6 @@
 const fs = require("fs");
 const xlsx = require("xlsx");
-const parse = require("csv-parse");
+const parse = require("csv-parse").parse;
 
 function XLS_json(config, callback) {
 	if (!config.input) {
@@ -35,7 +35,7 @@ CV.prototype.ws = function (wb, target_sheet) {
 };
 
 CV.prototype.csv = function (ws) {
-	return (csv_file = xlsx.utils.make_csv(ws));
+	return (csv_file = xlsx.utils.sheet_to_csv(ws));
 };
 
 CV.prototype.CSVToJSON = function (
